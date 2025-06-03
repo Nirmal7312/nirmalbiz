@@ -1,0 +1,156 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Home{% endblock %}
+
+{% block styles %}
+<style>
+  body, html {
+    margin: 0; padding: 0;
+    height: 100vh;
+    font-family: 'Courier New', monospace;
+  }
+
+  .top-half {
+    position: relative;
+    height: 80vh;
+    background: url("{% static 'home/bg.png' %}") no-repeat center center;
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    padding-bottom: 100px;
+  }
+
+  .text-overlay {
+    /* background-color: rgba(0,0,0,0.5); */
+    padding: 2rem 3rem;
+    border-radius: 10px;
+    max-width: 80%;
+    text-align: center;
+  }
+
+  .bottom-half {
+    background: url("{% static 'home/bbg.png' %}");
+    background-size: cover;
+    padding-top: 30px;
+    height: auto;
+    background-color: #f0f0f0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+  }
+
+  .typing-text {
+    font-size: 2rem;
+    color: black;
+    white-space: nowrap;
+    border-right: 4px solid black;
+    padding-left: 10px;
+    width: fit-content;
+    margin-top: 30px;
+    padding-bottom: 10px;
+    margin-left: 220px;
+  }
+</style>
+{% endblock %}
+
+{% block body %}
+<!-- Navbar -->
+
+
+<section class="top-half">
+  <div class="text-overlay">
+    <h1 style="color:black;">Welcome to nirmal.biz</h1>
+    <h3 class="typing-text"></h3> <br>
+    <h5 style="color:black;">
+      I'm a curious learner, a tech explorer, a young cricketer, <br> and a developer! This is my website to showcase my works,
+      my projects, <br>interests, ideas, websites, robots, apps, tutorials and lot
+      more. Be ready!!!
+    </h5> <br>
+    <div style="padding-top">
+      <a style="padding:10px;" class="btn btn-dark" href="/aboutme">About Me</a>
+      <a style="padding:10px;" class="btn btn-outline-dark" href="mailto:aman.kumar@ncfe.ac.in">Contact Me</a>
+    </div>
+  </div>
+</section>
+
+<section class="bottom-half">
+  <div class="text-overlay">
+    <div class="container">
+      <div class="text-center" style="padding-bottom: 30px;">
+        <h1><b>Languages I Code In</b></h1>
+      </div>
+
+      <div class="row text-center">
+        <div class="col-lg-4">
+          <img class="bd-placeholder-img rounded-circle" width="140" height="140" src="{% static 'home/py.png' %}" alt="Python">
+          <h2 class="fw-normal">Python</h2>
+          <p>Python is a powerful and beginner-friendly programming language. I use it to build logic, create backend
+            systems, automate tasks, and even develop games or bots. It’s clean, readable, and great for learning real
+            programming!</p>
+        </div>
+
+        <div class="col-lg-4">
+          <img class="bd-placeholder-img rounded-circle" width="140" height="140" src="{% static 'home/html.png' %}" alt="HTML">
+          <h2 class="fw-normal">HTML</h2>
+          <p>HTML is the backbone of every website. I use it to structure web pages — adding headings, images, links, and
+            organizing content so everything looks neat and works properly.</p>
+        </div>
+
+        <div class="col-lg-4">
+          <img class="bd-placeholder-img rounded-circle" width="140" height="140" src="{% static 'home/css.png' %}" alt="CSS">
+          <h2 class="fw-normal">CSS</h2>
+          <p>CSS makes websites look beautiful. I use it to style HTML — changing colors, layouts, fonts, and animations
+            to bring creativity and design to my web projects.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}
+
+{% block java %}
+const phrases = [
+  "I'm Nirmal",
+  "Class 8A Student",
+  "Developer",
+  "Cricket Lover",
+  "Thala Fan"
+];
+
+const el = document.querySelector(".typing-text");
+let phraseIndex = 0;
+let letterIndex = 0;
+let isDeleting = false;
+
+function typeLoop() {
+  const currentPhrase = phrases[phraseIndex];
+  const visibleText = currentPhrase.substring(0, letterIndex);
+  el.innerHTML = visibleText;
+
+  if (!isDeleting) {
+    if (letterIndex < currentPhrase.length) {
+      letterIndex++;
+    } else {
+      isDeleting = true;
+      setTimeout(typeLoop, 1500);
+      return;
+    }
+  } else {
+    if (letterIndex > 0) {
+      letterIndex--;
+    } else {
+      isDeleting = false;
+      phraseIndex = (phraseIndex + 1) % phrases.length;
+    }
+  }
+
+  const speed = isDeleting ? 50 : 100;
+  setTimeout(typeLoop, speed);
+}
+
+window.onload = typeLoop;
+{% endblock %}
