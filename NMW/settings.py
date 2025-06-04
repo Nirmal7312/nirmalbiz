@@ -17,6 +17,8 @@ SECRET_KEY = config('DJANGO_SECRET_KEY', default='unsafe-key')
 DEBUG = config('DJANGO_DEBUG', default=False, cast=bool)
 
 ALLOWED_HOSTS = config('DJANGO_ALLOWED_HOSTS', default='').split(',')
+APPEND_SLASH = True
+
 
 # Application definition
 INSTALLED_APPS = [
