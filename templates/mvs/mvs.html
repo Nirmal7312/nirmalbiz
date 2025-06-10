@@ -1,0 +1,195 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %} Most Viewed Sites {% endblock %}
+
+{% block styles %}
+{{ block.super }}
+.card {
+  border: none;
+  backdrop-filter: blur(10px);
+  background: rgba(255, 255, 255, 0.75);
+  transition: all 0.3s ease;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}
+
+.card:hover {
+  transform: scale(1.03);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
+}
+
+.favicon {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: white;
+  padding: 6px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  transition: transform 0.3s;
+}
+
+.card:hover .favicon {
+  transform: rotate(10deg) scale(1.1);
+}
+
+h1.title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #343a40;
+}
+
+.visit-btn {
+  border-radius: 25px;
+  font-weight: 600;
+  padding: 6px 16px;
+}
+{% endblock %}
+
+{% block body %}
+<div class="container py-5">
+  <h1 class="text-center mb-5 title">🌐 Most Viewed Sites</h1>
+
+  <div class="row g-4">
+
+    <!-- Google -->
+    <div class="col-sm-6 col-md-4">
+      <div class="card rounded-4 p-3">
+        <div class="card-body">
+          <div class="d-flex align-items-center mb-3">
+            <img src="https://www.google.com/favicon.ico" alt="Google" class="favicon me-3">
+            <h5 class="card-title mb-0">Google</h5>
+          </div>
+          <p class="text-muted">Visited <strong>many</strong> times</p>
+          <a href="https://www.google.com" target="_blank" class="btn btn-primary btn-sm visit-btn">Visit</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- YouTube -->
+    <div class="col-sm-6 col-md-4">
+      <div class="card rounded-4 p-3">
+        <div class="card-body">
+          <div class="d-flex align-items-center mb-3">
+            <img src="https://www.youtube.com/favicon.ico" alt="YouTube" class="favicon me-3">
+            <h5 class="card-title mb-0">YouTube</h5>
+          </div>
+          <p class="text-muted">Visited <strong>many</strong> times</p>
+          <a href="https://www.youtube.com" target="_blank" class="btn btn-danger btn-sm visit-btn">Visit</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Wikipedia -->
+    <div class="col-sm-6 col-md-4">
+      <div class="card rounded-4 p-3">
+        <div class="card-body">
+          <div class="d-flex align-items-center mb-3">
+            <img src="https://en.wikipedia.org/static/favicon/wikipedia.ico" alt="Wikipedia" class="favicon me-3">
+            <h5 class="card-title mb-0">Wikipedia</h5>
+          </div>
+          <p class="text-muted">Visited <strong>many</strong> times</p>
+          <a href="https://www.wikipedia.org" target="_blank" class="btn btn-dark btn-sm visit-btn">Visit</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Add more cards below if needed -->
+    <div class="col-sm-6 col-md-4">
+      <div class="card rounded-4 p-3">
+        <div class="card-body">
+          <div class="d-flex align-items-center mb-3">
+            <img src="https://ncfe.myclassboard.com/favicon.ico" alt="MCB" class="favicon me-3">
+            <h5 class="card-title mb-0">MCB</h5>
+          </div>
+          <p class="text-muted">Visited <strong>many</strong> times</p>
+          <a href="https://ncfe.myclassboard.com/" target="_blank" class="btn btn-danger btn-sm visit-btn">Visit</a>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="col-sm-6 col-md-4">
+      <div class="card rounded-4 p-3">
+        <div class="card-body">
+          <div class="d-flex align-items-center mb-3">
+            <img src="https://chatgpt.com/favicon.ico" alt="MCB" class="favicon me-3">
+            <h5 class="card-title mb-0">ChatGPT</h5>
+          </div>
+          <p class="text-muted">Visited <strong>many</strong> times</p>
+          <a href="https://chatgpt.com" target="_blank" class="btn btn-dark btn-sm visit-btn">Visit</a>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="col-sm-6 col-md-4">
+      <div class="card rounded-4 p-3">
+        <div class="card-body">
+          <div class="d-flex align-items-center mb-3">
+            <img src="https://aistudio.google.com/prompts/new_chat/favicon.ico" alt="MCB" class="favicon me-3">
+            <h5 class="card-title mb-0">Google AI Studio</h5>
+          </div>
+          <p class="text-muted">Visited <strong>many</strong> times</p>
+          <a href="https://aistudio.google.com/prompts/new_chat" target="_blank" class="btn btn-primary btn-sm visit-btn">Visit</a>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="col-sm-6 col-md-4">
+      <div class="card rounded-4 p-3">
+        <div class="card-body">
+          <div class="d-flex align-items-center mb-3">
+            <img src="https://drive.google.com/favicon.ico" alt="MCB" class="favicon me-3">
+            <h5 class="card-title mb-0">Google Drive</h5>
+          </div>
+          <p class="text-muted">Visited <strong>many</strong> times</p>
+          <a href="https://drive.google.com/drive/u/0/my-drive" target="_blank" class="btn btn-warning btn-sm visit-btn">Visit</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-sm-6 col-md-4">
+      <div class="card rounded-4 p-3">
+        <div class="card-body">
+          <div class="d-flex align-items-center mb-3">
+            <img src="https://ssl.gstatic.com/ui/v1/icons/mail/rfr/gmail.ico" alt="MCB" class="favicon me-3">
+            <h5 class="card-title mb-0">Gmail</h5>
+          </div>
+          <p class="text-muted">Visited <strong>many</strong> times</p>
+          <a href="https://mail.google.com/" target="_blank" class="btn btn-danger btn-sm visit-btn">Visit</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-sm-6 col-md-4">
+      <div class="card rounded-4 p-3">
+        <div class="card-body">
+          <div class="d-flex align-items-center mb-3">
+            <img src="https://map.google.com/favicon.ico" alt="MCB" class="favicon me-3">
+            <h5 class="card-title mb-0">Google Maps</h5>
+          </div>
+          <p class="text-muted">Visited <strong>many</strong> times</p>
+          <a href="https://map.google.com/" target="_blank" class="btn btn-primary btn-sm visit-btn">Visit</a>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="col-sm-6 col-md-4">
+      <div class="card rounded-4 p-3">
+        <div class="card-body">
+          <div class="d-flex align-items-center mb-3">
+            <img src="https://www.chennaisuperkings.com/favicon.ico" alt="MCB" class="favicon me-3">
+            <h5 class="card-title mb-0">CSK</h5>
+          </div>
+          <p class="text-muted">Visited <strong>many</strong> times</p>
+          <a href="https://www.google.com/search?q=csk" target="_blank" class="btn btn-warning btn-sm visit-btn">Visit</a>
+        </div>
+      </div>
+    </div>
+
+
+  </div>
+</div>
+{% endblock %}
