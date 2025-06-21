@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+
+{% block title %} Family Info {% endblock %}
+
+{% block styles %}
+{{ block.super }}
+<style>
+  table, th, td {
+    border: 2px solid black !important;
+  }
+  th {
+    text-align: center;
+    text-decoration: underline;
+  }
+</style>
+{% endblock %}
+
+{% block body %}
+<div class="container mt-5">
+  <h3 class="mb-4">Family Info Table <span><a href="add/" class="btn btn-outline-primary">Add +</a></span></h3>
+
+  <div class="table-responsive">
+    <table class="table text-center table-bordered">
+      <thead>
+        <tr>
+          <th>Id</th>
+          <th>Name</th>
+          <th>Number</th>
+          <th>Age</th>
+          <th>Functions</th>
+        </tr>
+      </thead>
+      <tbody>
+      {% for f in family %}
+        <tr>
+          <td>{{forloop.counter}}</td>
+          <td>{{f.name}}</td>
+          <td>{{f.number}}</td>
+          <td>{{f.age}}</td>
+          <td><a href="/familyinfo/delete/{{f.id}}">Delete</a></td>
+        </tr>
+      {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+{% endblock %}
+
