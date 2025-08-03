@@ -5,39 +5,111 @@
 {% block styles %}
 {{ block.super }}
 <style>
-  table, th, td {
-    border: 2px solid black !important;
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f9;
+    margin: 0;
+    padding: 0;
   }
-  th {
+
+  .container {
+    margin: 50px auto;
+    max-width: 900px;
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    animation: fadeIn 1s ease-in-out;
+  }
+
+  h3 {
     text-align: center;
-    text-decoration: underline;
+    margin-bottom: 20px;
+    color: #333;
+  }
+
+  .table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+  }
+
+  .table th, .table td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: center;
+  }
+
+  .table th {
+    background-color: #007bff;
+    color: white;
+    text-transform: uppercase;
+  }
+
+  .table tr:nth-child(even) {
+    background-color: #f9f9f9;
+  }
+
+  .table tr:hover {
+    background-color: #f1f1f1;
+  }
+
+  .btn {
+    display: inline-block;
+    padding: 8px 12px;
+    margin: 5px;
+    color: white;
+    background-color: #007bff;
+    border: none;
+    border-radius: 4px;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+
+  .btn:hover {
+    background-color: #0056b3;
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(-20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
   }
 </style>
 {% endblock %}
 
 {% block body %}
-<div class="container mt-5">
-  <h3 class="mb-4">Family Info Table <span><a href="add/" class="btn btn-outline-primary">Add +</a></span></h3>
-
+<div class="container">
+  <h3>Family Info Table</h3>
+  <a href="add/" class="btn">Add New +</a>
   <div class="table-responsive">
-    <table class="table text-center table-bordered">
+    <table class="table">
       <thead>
         <tr>
           <th>Id</th>
           <th>Name</th>
           <th>Number</th>
           <th>Age</th>
-          <th>Functions</th>
+          <th>Actions</th>
         </tr>
       </thead>
       <tbody>
       {% for f in family %}
         <tr>
-          <td>{{forloop.counter}}</td>
-          <td>{{f.name}}</td>
-          <td>{{f.number}}</td>
-          <td>{{f.age}}</td>
-          <td><a href="/familyinfo/delete/{{f.id}}">Delete</a></td>
+          <td>{{ forloop.counter }}</td>
+          <td>{{ f.name }}</td>
+          <td>{{ f.number }}</td>
+          <td>{{ f.age }}</td>
+          <td>
+            <a href="{% url 'edit' f.id %}" class="btn">Edit</a>
+            <a href="/familyinfo/delete/{{ f.id }}" class="btn" style="background-color: #dc3545;">Delete</a>
+          </td>
         </tr>
       {% endfor %}
       </tbody>
@@ -45,4 +117,3 @@
   </div>
 </div>
 {% endblock %}
-

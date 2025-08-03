@@ -21,3 +21,17 @@ def add(request):
         family.save()
         return redirect('index')
     return render(request, 'familyinfo/add.html')
+
+def edit(request, eid):
+    data = Family.objects.filter(id=eid).first()  # Retrieve the first object matching the filter
+    if not data:
+        return HttpResponse("Family member not found", status=404)
+
+    if request.method == 'POST':
+        data.name = request.POST.get('name')
+        data.number = request.POST.get('number')
+        data.age = request.POST.get('age')
+        data.save()
+        return redirect('index')
+
+    return render(request, 'familyinfo/add.html', {'data': data})
