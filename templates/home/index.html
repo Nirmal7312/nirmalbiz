@@ -1,159 +1,208 @@
 {% extends 'base.html' %}
 {% load static %}
 
-{% block title %}Home{% endblock %}
-
 {% block styles %}
+{{ block.super }}
 <style>
-  body, html {
-    margin: 0; padding: 0;
-    height: 100vh;
-    font-family: 'Courier New', monospace;
+  body {
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(to bottom, rgba(106, 17, 203, 0.8), rgba(37, 117, 252, 0.8)), url('/static/home/bg.png') no-repeat center center fixed;
+    background-size: cover;
+    color: #fff;
+    margin: 0;
+    padding: 0;
   }
 
-  .top-half {
+  .hero {
     position: relative;
-    height: 80vh;
-    background: url("{% static 'home/bg.png' %}") no-repeat center center;
-    background-size: cover;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: white;
-    padding-bottom: 100px;
-  }
-
-  .text-overlay {
-    /* background-color: rgba(0,0,0,0.5); */
-    padding: 2rem 3rem;
-    border-radius: 10px;
-    max-width: 80%;
+    overflow: hidden;
     text-align: center;
+    padding: 100px 20px;
+    animation: fadeIn 1.5s ease-in-out;
   }
 
-  .bottom-half {
-    background: url("{% static 'home/bbg.png' %}");
-    background-size: cover;
-    padding-top: 30px;
-    height: auto;
-    background-color: #f0f0f0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: white;
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5));
+    z-index: 1;
   }
 
-  .typing-text {
+  .hero h1,
+  .hero p,
+  .hero a,
+  .hero h3 {
+    position: relative;
+    z-index: 2;
+  }
+
+  .hero h1 {
+    font-size: 3.5rem;
+    margin-bottom: 20px;
+    color: whitesmoke;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  }
+
+  .hero h3 {
     font-size: 2rem;
-    color: black;
-    white-space: nowrap;
-    border-right: 4px solid black;
-    padding-left: 10px;
-    width: fit-content;
-    margin-top: 30px;
-    padding-bottom: 10px;
-    margin-left: 220px;
+    margin: 15px 0;
+    color: #f0e68c;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+  }
+
+  .hero p {
+    font-size: 1.8rem;
+    margin-bottom: 30px;
+    color: wheat;
+  }
+
+  .hero a {
+    display: inline-block;
+    padding: 12px 25px;
+    background: #fff;
+    color: #6a11cb;
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 5px;
+    transition: background-color 0.3s, color 0.3s;
+    margin-right: 10px;
+  }
+
+  .hero a:hover {
+    background: #2575fc;
+    color: #fff;
+  }
+
+  .contact-btn {
+    margin-top: 20px;
+    display: inline-block;
+    padding: 12px 25px;
+    background: #ff5722;
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 5px;
+    transition: background-color 0.3s, color 0.3s;
+    margin-left: 10px;
+  }
+
+  .contact-btn:hover {
+    background: #e64a19;
+    color: #fff;
+  }
+
+  .animated-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('/static/home/bg.png') no-repeat center center/cover;
+    animation: zoomIn 10s infinite alternate;
+    z-index: 0;
+  }
+
+  @keyframes zoomIn {
+    0% {
+      transform: scale(1);
+    }
+
+    100% {
+      transform: scale(1.2);
+    }
+  }
+
+  .features {
+    display: flex;
+    justify-content: space-around;
+    padding: 50px 20px;
+    animation: slideIn 1.5s ease-in-out;
+    flex-wrap: wrap;
+  }
+
+  .feature {
+    text-align: center;
+    max-width: 300px;
+    transition: transform 0.3s;
+    margin: 20px;
+  }
+
+  .feature img {
+    width: 80px;
+    height: auto;
+    margin-bottom: 20px;
+  }
+
+  .feature:hover {
+    transform: scale(1.1);
+  }
+
+  @keyframes slideIn {
+    from {
+      transform: translateY(50px);
+      opacity: 0;
+    }
+
+    to {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+
+    to {
+      opacity: 1;
+    }
   }
 </style>
 {% endblock %}
 
 {% block body %}
-<!-- Navbar -->
+<div class="hero">
+  <div class="animated-bg"></div>
+  <h1>Welcome to nirmal.biz</h1>
+  <h3><span id="typed-text"></span></h3>
+  <p>I'm a curious learner, a tech explorer, a young cricketer, <br> and a developer! This is my website to showcase my works,
+    my projects, <br>interests, ideas, websites, robots, apps, tutorials and lot more. Be ready!!!</p>
+  <a href="/aboutme/" class="btn">About Me</a>
+  <a href="mailto:aman.kumar@ncfe.ac.in" class="contact-btn">Contact Me</a>
+</div>
 
-
-<section class="top-half">
-  <div class="text-overlay">
-    <h1 style="color:black;">Welcome to nirmal.biz</h1>
-    <h3 class="typing-text"></h3> <br>
-    <h5 style="color:black;">
-      I'm a curious learner, a tech explorer, a young cricketer, <br> and a developer! This is my website to showcase my works,
-      my projects, <br>interests, ideas, websites, robots, apps, tutorials and lot
-      more. Be ready!!!
-    </h5> <br>
-    <div style="padding-top">
-      <a style="padding:10px; width:110px;" class="btn btn-dark" href="/aboutme">About Me</a>
-      <a style="padding:10px; width:110px;" class="btn btn-outline-dark" href="mailto:aman.kumar@ncfe.ac.in">Contact Me</a>
-    </div>
+<div class="features">
+  <div class="feature">
+    <img style="height: 70px; width: 100px;" src="{% static 'home/familyinfo.avif' %}" alt="Feature 1">
+    <h3>Manage Family Info</h3>
+    <p>Easily add, edit, and view family details in one place.</p>
   </div>
-</section>
-
-<section class="bottom-half">
-  <div class="text-overlay">
-    <div class="container">
-      <div class="text-center" style="padding-bottom: 30px;">
-        <h1><b>Languages I Code In</b></h1>
-      </div>
-
-      <div class="row text-center">
-        <div class="col-lg-4">
-          <img class="bd-placeholder-img rounded-circle" width="140" height="140" src="{% static 'home/py.png' %}" alt="Python">
-          <h2 class="fw-normal">Python</h2>
-          <p>Python is a powerful and beginner-friendly programming language. I use it to build logic, create backend
-            systems, automate tasks, and even develop games or bots. It’s clean, readable, and great for learning real
-            programming!</p>
-        </div>
-
-        <div class="col-lg-4">
-          <img class="bd-placeholder-img rounded-circle" width="140" height="140" src="{% static 'home/html.png' %}" alt="HTML">
-          <h2 class="fw-normal">HTML</h2>
-          <p>HTML is the backbone of every website. I use it to structure web pages — adding headings, images, links, and
-            organizing content so everything looks neat and works properly.</p>
-        </div>
-
-        <div class="col-lg-4">
-          <img class="bd-placeholder-img rounded-circle" width="140" height="140" src="{% static 'home/css.png' %}" alt="CSS">
-          <h2 class="fw-normal">CSS</h2>
-          <p>CSS makes websites look beautiful. I use it to style HTML — changing colors, layouts, fonts, and animations
-            to bring creativity and design to my web projects.</p>
-        </div>
-      </div>
-    </div>
+  <div class="feature">
+    <img src="{% static 'home/py.png' %}" alt="Feature 2">
+    <h3>Powered by Django</h3>
+    <p>Experience the power of a robust and scalable framework.</p>
   </div>
-</section>
-{% endblock %}
+  <div class="feature">
+    <img src="{% static 'home/html.png' %}" alt="Feature 3">
+    <h3>Interactive UI</h3>
+    <p>Enjoy a seamless and engaging user experience.</p>
+  </div>
+</div>
 
-{% block java %}
-const phrases = [
-  "I'm Nirmal",
-  "Class 8A Student",
-  "Developer",
-  "Cricket Lover",
-  "Thala Fan"
-];
-
-const el = document.querySelector(".typing-text");
-let phraseIndex = 0;
-let letterIndex = 0;
-let isDeleting = false;
-
-function typeLoop() {
-  const currentPhrase = phrases[phraseIndex];
-  const visibleText = currentPhrase.substring(0, letterIndex);
-  el.innerHTML = visibleText;
-
-  if (!isDeleting) {
-    if (letterIndex < currentPhrase.length) {
-      letterIndex++;
-    } else {
-      isDeleting = true;
-      setTimeout(typeLoop, 1500);
-      return;
-    }
-  } else {
-    if (letterIndex > 0) {
-      letterIndex--;
-    } else {
-      isDeleting = false;
-      phraseIndex = (phraseIndex + 1) % phrases.length;
-    }
-  }
-
-  const speed = isDeleting ? 50 : 100;
-  setTimeout(typeLoop, speed);
-}
-
-window.onload = typeLoop;
-
-
-
+<!-- Typed.js Script -->
+<script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+<script>
+  var typed = new Typed("#typed-text", {
+    strings: ["I am Nirmal", "Study in Class 8A", "Cricket Lover", "Developer", "Thala Fan", "Video Editor"],
+    typeSpeed: 60,
+    backSpeed: 40,
+    backDelay: 1200,
+    loop: true
+  });
+</script>
 {% endblock %}
