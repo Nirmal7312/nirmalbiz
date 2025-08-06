@@ -76,6 +76,40 @@
     display: flex;
   }
 
+  body.dark-mode {
+    background-color: #121212;
+    color: #e0e0e0;
+  }
+
+  .dark-mode .about-section {
+    background-color: #1e1e1e;
+  }
+
+  .dark-mode .card {
+    background-color: #43414d;
+    color: #e0e0e0;
+  }
+
+  .dark-mode .btn {
+    background-color: #333;
+    color: #e0e0e0;
+  }
+
+  .dark-mode .btn:hover {
+    background-color: #444;
+  }
+  .dark-mode .about-sub {
+    color: white;
+  }
+  .dark-mode #contactbtn {
+    background-color: #0c395e;
+    color: #fff;
+  }
+  .dark-mode #contactbtn:hover {
+    background-color: #056ec5;
+    color: #fff;
+  }
+
   @media (max-width: 768px) {
     .about-heading {
       font-size: 2rem;
@@ -113,7 +147,7 @@
     <p class="about-sub">A curious learner, studying in class 8A National Centre for Excellence Indranagar, cricket lover, developer, and a proud Thala fan!</p>
 
     <div class="btn-contact">
-      <a href="mailto:aman.kumar@ncfe.ac.in" class="btn btn-primary">
+      <a id="contactbtn" href="mailto:aman.kumar@ncfe.ac.in" class="btn btn-primary">
         📧 Contact Me
       </a>
     </div>
@@ -151,4 +185,23 @@
   thumb.onclick = () => modal.classList.add("show");
   modal.onclick = () => modal.classList.remove("show");
 </script>
+
+<!-- Dark mode toggle script -->
+<script>
+  const toggleDarkMode = () => {
+    document.body.classList.toggle('dark-mode');
+    const isDarkMode = document.body.classList.contains('dark-mode');
+    localStorage.setItem('darkMode', isDarkMode);
+  };
+
+  // Check local storage for dark mode preference
+  window.onload = () => {
+    const isDarkMode = localStorage.getItem('darkMode') === 'true';
+    if (isDarkMode) {
+      document.body.classList.add('dark-mode');
+    }
+  };
+</script>
+
+<button onclick="toggleDarkMode()" class="btn btn-secondary" style="position: fixed; top: 10px; right: 10px;">Change Mode</button>
 {% endblock %}
